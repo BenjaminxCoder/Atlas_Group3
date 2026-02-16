@@ -9,7 +9,7 @@ RiverSense is a responsive, web-based prototype application that assists recreat
 
 ## System Overview
 
-RiverSense integrates publicly available river flow data and weather forecasts to present current fishing conditions in an accessible format. Users can select a river, view key metrics, log fishing trips (including catch details and notes), and review past entries—all through a browser on any internet-connected device. The application emphasizes responsiveness and ADA compliance to ensure broad usability.
+RiverSense integrates publicly available river flow data and weather forecasts to present current fishing conditions in an accessible format. Users can select a river, view key metrics, log fishing trips (including catch details and notes), and review past entries. The application emphasizes responsiveness and ADA compliance to ensure broad usability.
 
 **Core Goals**  
 - Provide anglers with actionable, real-time environmental insights.  
