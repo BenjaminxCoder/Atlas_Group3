@@ -1,15 +1,15 @@
-# RiverSense – River Conditions & Fishing Trip Tracker
+# AtlasFishing – River Conditions & Fishing Trip Tracker
 
-**RiverSense v0.1**  
+**AtlasFishing v0.1**  
 Brought to you by AtlasFishing.app  
 **Team:** Atlas (Esteban Salazar & Berry Walker)  
 **Date:** February 2026  
 
-RiverSense is a responsive, web-based prototype application that assists recreational anglers in making informed fishing decisions. It combines real-time environmental data from public APIs with personal fishing trip logging capabilities. The current iteration focuses on displaying river conditions and enabling local storage of trip records, serving as a functional foundation for future enhancements.
+AtlasFishing is a responsive, web-based prototype application that assists recreational anglers in making informed fishing decisions. It combines real-time environmental data from public APIs with personal fishing trip logging capabilities. The current iteration focuses on displaying river conditions and enabling local storage of trip records, serving as a functional foundation for future enhancements.
 
 ## System Overview
 
-RiverSense integrates publicly available river flow data and weather forecasts to present current fishing conditions in an accessible format. Users can select a river, view key metrics, log fishing trips (including catch details and notes), and review past entries. The application emphasizes responsiveness and ADA compliance to ensure broad usability.
+AtlasFishing integrates publicly available river flow data and weather forecasts to present current fishing conditions in an accessible format. Users can select a river, view key metrics, log fishing trips (including catch details and notes), and review past entries. The application emphasizes responsiveness and ADA compliance to ensure broad usability.
 
 **Core Goals**  
 - Provide anglers with actionable, real-time environmental insights.  
