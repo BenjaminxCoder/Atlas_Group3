@@ -1,0 +1,87 @@
+# =============================================================================
+# Initial .gitignore for AtlasFishing Project (v0.1 foundation)
+# =============================================================================
+#
+# This file defines the initial plan for files and directories that Git should
+# ignore in the Atlas_Group3 repository. The goal is to keep the repository
+# clean by excluding:
+#   - Operating system artifacts
+#   - Editor/IDE configuration (primarily VS Code)
+#   - Node.js dependencies and build outputs (for future React or tooling)
+#   - Temporary files, logs, and environment secrets
+#
+# This configuration is lightweight and suitable for a pure client-side web app
+# using HTML, CSS, JavaScript. This is for our plan migrate to React.
+# It follows patterns from GitHub's official Node.gitignore template.
+#
+# Last updated: Initial setup - February 24, 2026 - Berry
+# =============================================================================
+
+# -------------------------------
+# Operating System generated files
+# -------------------------------
+.DS_Store
+Thumbs.db
+ehthumbs.db
+desktop.ini
+
+# -------------------------------
+# Editor and IDE files (VS Code primarily)
+# -------------------------------
+.vscode/
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+*.code-workspace
+
+# -------------------------------
+# Node.js / npm / package manager files
+# -------------------------------
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+.pnpm-debug.log*
+
+# -------------------------------
+# Build / distribution / output folders (future-proof for React or bundlers)
+# -------------------------------
+/dist/
+/build/
+/out/
+/.tmp/
+/coverage/
+
+# -------------------------------
+# Logs, temporary files, and caches
+# -------------------------------
+*.log
+*.log.*
+*.tmp
+*.bak
+*.swp
+*~
+
+# -------------------------------
+# Environment / secrets (critical even if not yet used)
+# -------------------------------
+.env
+.env.local
+.env.*.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# -------------------------------
+# Testing / coverage artifacts (For Later)
+# -------------------------------
+.nyc_output/
+.lcov.info
+
+# -------------------------------
+# macOS-specific extended attributes
+# -------------------------------
+.AppleDouble
+.LSOverride
