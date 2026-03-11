@@ -4,7 +4,7 @@
   "description": "AtlasFishing prototype for viewing river conditions and logging fishing trips",
   "main": "src/main.js",
   "scripts": {
-    "start": "npx serve public"
+    "start": "npx serve ."
   },
   "author": "Atlas Team",
   "license": "MIT"

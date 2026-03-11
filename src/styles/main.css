@@ -1,0 +1,255 @@
+@import "./variables.css";
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-stack);
+  background: var(--bg);
+  color: var(--text);
+}
+
+body {
+  line-height: 1.5;
+}
+
+#app {
+  padding: var(--spacing-lg);
+}
+
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+
+h1,
+h2,
+h3 {
+  margin-top: 0;
+  color: var(--text);
+}
+
+h1 {
+  font-size: 2rem;
+  margin-bottom: var(--spacing-sm);
+}
+
+h2 {
+  font-size: 1.4rem;
+  margin-bottom: var(--spacing-md);
+}
+
+p {
+  margin-top: 0;
+  color: var(--text-muted);
+}
+
+section {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: var(--spacing-lg);
+  margin-bottom: var(--spacing-lg);
+}
+
+.card {
+  background: var(--surface-alt);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: var(--spacing-md);
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: var(--spacing-xs);
+  color: var(--text);
+}
+
+input,
+textarea,
+button {
+  font: inherit;
+}
+
+input,
+textarea {
+  width: 100%;
+  padding: 0.7rem 0.85rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: #fff;
+  color: var(--text);
+}
+
+input:focus,
+textarea:focus {
+  outline: 2px solid rgba(37, 99, 235, 0.2);
+  border-color: var(--primary);
+}
+
+textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+button {
+  width: fit-content;
+  padding: 0.7rem 1rem;
+  border: none;
+  border-radius: 8px;
+  background: var(--primary);
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+button:hover {
+  background: var(--primary-hover);
+}
+
+button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.error {
+  color: var(--error);
+  background: var(--error-bg);
+  border: 1px solid #fca5a5;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+}
+
+.success {
+  color: var(--success);
+  background: var(--success-bg);
+  border: 1px solid #86efac;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--surface);
+  overflow: hidden;
+}
+
+thead {
+  background: var(--surface-alt);
+}
+
+th,
+td {
+  text-align: left;
+  padding: 0.85rem;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+
+th {
+  color: var(--text);
+  font-weight: 700;
+}
+
+td {
+  color: var(--text-muted);
+}
+
+hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: var(--spacing-md) 0;
+}
+
+#trip-form-message {
+  margin: 0;
+  font-weight: 600;
+}
+
+/* Small layout improvement for grouped form fields */
+form > div {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  #app {
+    padding: var(--spacing-md);
+  }
+
+  section {
+    padding: var(--spacing-md);
+  }
+
+  h1 {
+    font-size: 1.7rem;
+  }
+
+  h2 {
+    font-size: 1.2rem;
+  }
+
+  table,
+  thead,
+  tbody,
+  th,
+  td,
+  tr {
+    display: block;
+  }
+
+  thead {
+    display: none;
+  }
+
+  tr {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: white;
+    margin-bottom: var(--spacing-md);
+    padding: var(--spacing-sm);
+  }
+
+  td {
+    border: none;
+    padding: 0.45rem 0;
+  }
+
+  td::before {
+    font-weight: 700;
+    color: var(--text);
+    display: inline-block;
+    min-width: 120px;
+  }
+
+  td:nth-child(1)::before {
+    content: "Date: ";
+  }
+
+  td:nth-child(2)::before {
+    content: "River: ";
+  }
+
+  td:nth-child(3)::before {
+    content: "Catch Count: ";
+  }
+
+  td:nth-child(4)::before {
+    content: "Notes: ";
+  }
+}

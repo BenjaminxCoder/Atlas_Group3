@@ -1,0 +1,23 @@
+:root {
+  --bg: #f5f7fb;
+  --surface: #ffffff;
+  --surface-alt: #f0f4f8;
+  --text: #1f2937;
+  --text-muted: #6b7280;
+  --border: #d1d5db;
+  --primary: #2563eb;
+  --primary-hover: #1d4ed8;
+  --success: #166534;
+  --success-bg: #dcfce7;
+  --error: #991b1b;
+  --error-bg: #fee2e2;
+  --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --radius: 10px;
+  --spacing-xs: 0.4rem;
+  --spacing-sm: 0.75rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+  --max-width: 960px;
+  --font-stack: Arial, Helvetica, sans-serif;
+}

@@ -2,7 +2,7 @@
 Service for requesting weather data from OpenWeather.
  */
 
-const API_KEY = import.meta.env.VITE_OPENWEATHER_KEY || "api key goes here mate";
+const API_KEY = "b5a606534532c5f599f11ca38eefdc78";
 
 export async function fetchWeatherByCoords(lat, lon) {
   if (!lat || !lon) {
