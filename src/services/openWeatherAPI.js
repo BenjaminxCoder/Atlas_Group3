@@ -1,6 +1,6 @@
-/**
-Service for requesting weather data from OpenWeather.
- */
+
+//Service for requesting weather data from OpenWeather.
+
 
 const API_KEY = "6640a95ca63a277f5f95e50a2f382ace"; // Note: IRL, API keys should be stored securely and not exposed in client-side code :)
 

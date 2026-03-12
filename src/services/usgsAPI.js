@@ -1,6 +1,6 @@
-/**
-Service for requesting river data from the USGS API.
- */
+
+//Service for requesting river data from the USGS API.
+ 
 
 export async function fetchRiverConditions(siteId) {
   if (!siteId) {

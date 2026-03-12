@@ -6,10 +6,10 @@ import { fetchRiverConditions } from "./services/usgsAPI.js";
 import { fetchWeatherByCoords } from "./services/openWeatherAPI.js";
 import { getTrips } from "./services/storage.js";
 
-/*
-Main application controller.
-This file wires together the UI pieces and shared app state.
- */
+
+// Main application controller.
+// This file wires together the UI pieces and shared app state.
+ 
 
 const app = document.querySelector("#app");
 

@@ -1,7 +1,7 @@
-/**
- * Simple localStorage repository for fishing trips.
- * This acts like a lightweight persistence layer for the prototype.
- */
+
+// Simple localStorage repository for fishing trips.
+//This acts like a lightweight persistence layer for the prototype.
+ 
 
 const STORAGE_KEY = "atlasFishingTrips";
 

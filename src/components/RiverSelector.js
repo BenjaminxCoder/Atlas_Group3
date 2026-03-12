@@ -1,7 +1,6 @@
-/**
- * Renders the river/site selector.
- * For now, the user enters a USGS site ID directly.
- */
+// Renders the river/site selector.
+ //For now, the user enters a USGS site ID directly.
+ 
 
 export function createRiverSelector(root, onLookup, currentValue = "") {
   root.innerHTML = `

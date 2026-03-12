@@ -1,8 +1,7 @@
 import { saveTrip } from "../services/storage.js";
 
-/**
- * Renders the fishing trip form and validates user input before saving.
- */
+// Renders the fishing trip form and validates user input before saving.
+ 
 
 export function createTripForm(root, riverName, siteId, onTripSaved) {
   root.innerHTML = `

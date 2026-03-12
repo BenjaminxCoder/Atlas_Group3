@@ -1,7 +1,7 @@
-/**
- * Renders current river and weather conditions.
- * Handles loading, error, and empty states.
- */
+
+ //Renders current river and weather conditions.
+ //Handles loading, error, and empty states.
+ 
 
  
 export function renderConditions(root, state) {
