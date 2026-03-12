@@ -18,7 +18,8 @@ export async function fetchRiverConditions(siteId) {
 
   const data = await response.json();
 
-  // API response structures can vary so this will safely inspect nested values.
+  // safely pulling values out of a JSON respone.
+  // If this exists keep going, otherwise return undefined instead of crashing. 
   const firstFeature = data?.features?.[0];
   const props = firstFeature?.properties || {};
   const coords = firstFeature?.geometry?.coordinates || [];

@@ -3,7 +3,9 @@
  * Handles loading, error, and empty states.
  */
 
+ 
 export function renderConditions(root, state) {
+
   if (state.loading) {
     root.innerHTML = `<p>Loading river and weather conditions...</p>`;
     return;

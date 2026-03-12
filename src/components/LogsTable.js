@@ -1,6 +1,6 @@
 /**
  * Renders saved trip logs from localStorage.
- * This gives the user a simple history view for the prototype.
+ * This gives the user a simple history view 
  */
 
 export function renderLogsTable(root, trips) {
