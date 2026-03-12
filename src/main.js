@@ -32,7 +32,7 @@ function setState(updates) {
 //When user searches new river, we wait for the data to come back from the API
 //clear old errors
 //the new site id is saved
-//Old river/weather data is cleared
+//Old river/weather data is cleared.
 async function handleRiverLookup(siteId) {
   setState({
     loading: true,
