@@ -1,0 +1,11 @@
+{
+  "name": "atlasfishing-app",
+  "version": "0.1.0",
+  "description": "AtlasFishing prototype for viewing river conditions and logging fishing trips",
+  "main": "src/main.js",
+  "scripts": {
+    "start": "npx serve ."
+  },
+  "author": "Atlas Team",
+  "license": "MIT"
+}
