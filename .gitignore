@@ -67,12 +67,9 @@ package-lock.json
 # -------------------------------
 # Environment / secrets (critical even if not yet used)
 # -------------------------------
+config.js
 .env
-.env.local
-.env.*.local
-.env.development.local
-.env.test.local
-.env.production.local
+*.env
 
 # -------------------------------
 # Testing / coverage artifacts (For Later)

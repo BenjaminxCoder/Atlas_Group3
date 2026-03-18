@@ -1,8 +1,8 @@
-/**
-Service for requesting weather data from OpenWeather.
- */
-
-const API_KEY = "b5a606534532c5f599f11ca38eefdc78";
+import { CONFIG } from "../../config.js";
+/*
+  Service for requesting weather data from OpenWeather.
+*/
+const API_KEY = CONFIG.OPENWEATHER_API_KEY;
 
 export async function fetchWeatherByCoords(lat, lon) {
   if (!lat || !lon) {
