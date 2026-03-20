@@ -13,8 +13,8 @@ import { CONFIG } from "../../config.js";
 const API_KEY = CONFIG.OPENWEATHER_API_KEY;
 const BASE_URL = CONFIG.OPENWEATHER_BASE_URL;
 
-if (!API_KEY || API_KEY.trim() === "") {
-  console.error("OpenWeatherMap API key is missing or empty. Check config.js.");
+if (!API_KEY || API_KEY.length !== 32) {
+  console.error("Invalid OpenWeatherMap API key format (expected 32 characters).");
 }
 
 /**
