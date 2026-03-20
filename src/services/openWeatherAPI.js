@@ -7,7 +7,7 @@
   - Returns only current weather fields relevant to the AtlasFishing App.
 */
 
-// Secured API token key (No exposed Keys)
+// Secured Keys & Data
 import { CONFIG } from "../../config.js";
 
 const API_KEY = CONFIG.OPENWEATHER_API_KEY;
