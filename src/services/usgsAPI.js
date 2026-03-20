@@ -19,7 +19,7 @@ const BASE_URL = CONFIG.USGS_BASE_URL;
  * @returns {Promise<Object>} Latest conditions or fallback object on failure
  * @throws {Error} If siteId is invalid or API request fails critically
  */
-export async function fecthRiverConditions(siteId) {
+export async function fetchRiverConditions(siteId) {
   // Input validation
   if (!siteId || typeof siteId !== "string" || siteId.trim() === "") {
     throw new Error("A valid USGS site ID is required (example:12144500).");
