@@ -25,10 +25,8 @@ if (!API_KEY || API_KEY.length !== 32) {
  * @throws {Error} If coordinates are invalid or API request fails
  */
 export async function fetchWeatherByCoords(lat, lon) {
-  // Input validation
-  if (typeof lat !== "number" || typeof lon !== "number" ||
-      lat < -90 || lat > 90 || lon < -180 || lon > 180) {
-        throw new Error("Invalid latitude or longitude values.");
+  if (typeof lat !== "number" || typeof lon !== "number") {
+        throw new Error("Invalid latitude or longitude.");
   }
 
   if (!API_KEY) {
@@ -36,39 +34,27 @@ export async function fetchWeatherByCoords(lat, lon) {
   }
 
   // Build URL with exclusions to minimize payload
-  const url = `${BASE_URL}?lat=${lat}&lon=${lon}` +
-              `&exclude=minutely,hourly,daily,alerts` +
-              `&units=imperial` +
-              `&appid=${API_KEY}`;
+  const url = `${BASE_URL}?lat=${lat}&lon=${lon}&units=imperial&appid=${API_KEY}`;
   
   try {
     const response = await fetch(url);
 
     if (!response.ok) {
-      if (response.status === 401) {
-        throw new Error("Unauthorized: Invalid or missing OpenWeatherMap API key.");
-      }
-      if (response.status === 429) {
-        throw new Error("Rate limit exceeded for OpenWeatherMap API.");
-      }
-      throw new Error(`OpenWeatherMap request failed with status ${response.status}.`);
+      const errorText = await response.text();
+      throw new Error(`Weather API error: ${response.status} - ${errorText}`);
     }
+
     const data = await response.json();
 
-    // Safely extract current weather
-    const current = data?.current ?? {};
-    const weatherItem = current?.weather?.[0] ?? {};
-
     return {
-      temperature: current.temp    ?? "Unavailable",
-      humidity:    current.humidity ?? "Unavailable",
-      windSpeed:   current.wind_speed ?? "Unavailable",
-      description: weatherItem.description ?? "Unavailable",
+      temperature: data.main?.temp ?? "Unavailable",
+      humidity:    data.main?.humidity ?? "Unavailable",
+      windSpeed:   data.wind?.speed ?? "Unavailable",
+      description: data.weather?.[0]?.description ?? "Unavailable",
     };
 
   } catch (error) {
     console.error("Weather fetch error:", error.message);
-    // Return fallback object instead of throwing so UI can display gracefully
     return {
       temperature: "Unavailable",
       humidity:    "Unavailable",
