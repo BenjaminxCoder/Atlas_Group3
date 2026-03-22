@@ -34,7 +34,7 @@ export async function fetchWeatherByCoords(lat, lon) {
   }
 
   // Build URL with exclusions to minimize payload
-  const url = `${BASE_URL}?lat=${lat}&lon=${lon}&units=imperial&appid=${API_KEY}`;
+  const url = `${BASE_URL}?lat=${lat}&lon=${lon}&appid=${API_KEY}`;
   
   try {
     const response = await fetch(url);
