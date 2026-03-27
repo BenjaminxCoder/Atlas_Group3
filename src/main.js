@@ -1,10 +1,11 @@
+// src/main.js
 import { createRiverSelector } from "./components/RiverSelector.js";
 import { renderConditions } from "./components/ConditionsDisplay.js";
 import { createTripForm } from "./components/TripForm.js";
 import { renderLogsTable } from "./components/LogsTable.js";
 import { fetchRiverConditions } from "./services/usgsAPI.js";
 import { fetchWeatherByCoords } from "./services/openWeatherAPI.js";
-import { getTrips } from "./services/storage.js";
+import { getTrips, saveTrip } from "./services/storage.js";
 
 /*
 Main application controller.
@@ -37,13 +38,13 @@ async function handleRiverLookup(siteId) {
   });
 
   try {
-    // Fetch river condition data from USGS first.
     const riverData = await fetchRiverConditions(siteId);
 
-    // If coordinates are available, use them to fetch weather data.
     let weatherData = null;
     if (riverData.latitude && riverData.longitude) {
-      weatherData = await fetchWeatherByCoords(riverData.latitude, riverData.longitude);
+      const roundedLat = Number(riverData.latitude.toFixed(2));
+      const roundedLon = Number(riverData.longitude.toFixed(2));
+      weatherData = await fetchWeatherByCoords(roundedLat, roundedLon);
     }
 
     setState({
@@ -60,12 +61,19 @@ async function handleRiverLookup(siteId) {
   }
 }
 
-function handleTripSaved() {
-  // Re-render after saving so the logs table updates immediately.
-  renderApp();
+/*
+  Double-save prevention + clean async handling
+*/
+async function handleTripSaved(tripData) {
+  try {
+    renderApp();   // Just refresh the logs table (save already happened in TripForm)
+  } catch (error) {
+    console.error("Refresh after save failed:", error);
+  }
 }
 
-function renderApp() {
+/* Updated renderApp with async support */
+async function renderApp() {
   app.innerHTML = `
     <div class="container">
       <h1>AtlasFishing App</h1>
@@ -97,7 +105,16 @@ function renderApp() {
   createRiverSelector(riverSelectorRoot, handleRiverLookup, state.selectedSiteId);
   renderConditions(conditionsRoot, state);
   createTripForm(tripFormRoot, state.selectedRiver, state.selectedSiteId, handleTripSaved);
-  renderLogsTable(logsTableRoot, getTrips());
+
+  // Load trips from Firebase
+  try {
+    const trips = await getTrips();
+    renderLogsTable(logsTableRoot, trips);
+  } catch (error) {
+    console.error("Failed to load trips:", error);
+    renderLogsTable(logsTableRoot, []);
+  }
 }
 
+// Initial render
 renderApp();
