@@ -1,26 +1,52 @@
-/**
- * Simple localStorage repository for fishing trips.
- * This acts like a lightweight persistence layer for the prototype.
- */
+// src/services/storage.js
+// Firebase Firestore for trip logs
 
-const STORAGE_KEY = "atlasFishingTrips";
+const firebaseConfig = {
+  apiKey: "AIzaSyC5qPfbvZkEyzCiOJSKqdCThKu1G-BOzpY",
+  authDomain: "atlasfishing-f4674.firebaseapp.com",
+  projectId: "atlasfishing-f4674",
+  storageBucket: "atlasfishing-f4674.firebasestorage.app",
+  messagingSenderId: "711232785759",
+  appId: "1:711232785759:web:72b139958ca99637febaea"
+};
 
-export function getTrips() {
+// Initialize Firebase only once
+if (!firebase.apps.length) {
+  firebase.initializeApp(firebaseConfig);
+}
+
+const db = firebase.firestore();
+const TRIPS_COLLECTION = 'trips';
+
+export async function saveTrip(tripData) {
   try {
-    const raw = localStorage.getItem(STORAGE_KEY);
-    return raw ? JSON.parse(raw) : [];
+    const docRef = await db.collection(TRIPS_COLLECTION).add({
+      date: tripData.date,
+      river: tripData.river || '',
+      catchCount: parseInt(tripData.catchCount || 0),
+      notes: tripData.notes || '',
+      createdAt: firebase.firestore.FieldValue.serverTimestamp()
+    });
+
+    return { id: docRef.id, ...tripData };
   } catch (error) {
-    console.error("Failed to read trips from storage:", error);
-    return [];
+    console.error("Save trip error:", error);
+    throw new Error("Failed to save trip. Please try again.");
   }
 }
 
-export function saveTrip(trip) {
-  const trips = getTrips();
-  trips.push(trip);
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(trips));
-}
+export async function getTrips() {
+  try {
+    const snapshot = await db.collection(TRIPS_COLLECTION)
+      .orderBy('createdAt', 'desc')
+      .get();
 
-export function clearTrips() {
-  localStorage.removeItem(STORAGE_KEY);
+    return snapshot.docs.map(doc => ({
+      id: doc.id,
+      ...doc.data()
+    }));
+  } catch (error) {
+    console.error("Get trips error:", error);
+    return [];
+  }
 }
