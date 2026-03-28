@@ -1,36 +1,23 @@
-
 // usgsAPI.js
 /*
-  Service module for fetching the latest continuous river/streamflow data from the USGS Water Data OGC API.
-  - Targets the /latest-continuous/items endpoint for the most recent observation.
-  - Focuses on discharge (parameter code 00060, cubic feet per second).
-  - Returns site metadata, latest discharge value, timestamp, and coordinates.
-  - Graceful error handling and fallbacks for UI stability.
+  Service module for fetching the latest continuous river/streamflow data from USGS.
+  Now uses secure PHP proxy.
 */
 
-// Secured Keys & Data
-import { CONFIG } from "../../config.js";
-
-const BASE_URL = CONFIG.USGS_BASE_URL;
+// No more config.js import!
 
 /**
  * Fetches the latest continuous river conditions (discharge) for a given USGS site ID.
- * @param {string} siteId - USGS site identifier ("12144500" for Snoqualmie near Carnation)
- * @returns {Promise<Object>} Latest conditions or fallback object on failure
- * @throws {Error} If siteId is invalid or API request fails critically
+ * @param {string} siteId - USGS site identifier (e.g. "12144500")
+ * @returns {Promise<Object>} Latest conditions or fallback object
  */
 export async function fetchRiverConditions(siteId) {
-  // Input validation
   if (!siteId || typeof siteId !== "string" || siteId.trim() === "") {
     throw new Error("A valid USGS site ID is required (example:12144500).");
   }
 
-  // Construct query: filter by full monitoring location ID and discharge parameter
-  const fullLocationId = `USGS-${siteId.trim()}`;
-  const url = `${BASE_URL}?` +
-              `monitoring_location_id=${encodeURIComponent(fullLocationId)}` +
-              `&parameter_code=00060` +
-              `&limit=1`;  // Only need the latest single value
+  // Call our secure proxy
+  const url = `/atlasfishing/proxy.php?type=usgs&siteId=${encodeURIComponent(siteId.trim())}`;
 
   try {
     const response = await fetch(url);
@@ -50,7 +37,6 @@ export async function fetchRiverConditions(siteId) {
 
     const data = await response.json();
 
-    // Expect GeoJSON FeatureCollection; take first (and usually only) feature
     const feature = data?.features?.[0];
     if (!feature) {
       return {
@@ -80,7 +66,6 @@ export async function fetchRiverConditions(siteId) {
 
   } catch (error) {
     console.error("USGS fetch error:", error.message);
-    // Return safe fallback so UI doesn't break
     return {
       siteId,
       siteName: `USGS Site ${siteId}`,
