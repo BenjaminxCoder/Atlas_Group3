@@ -8,6 +8,66 @@ html {
   font-size: 16px;
 }
 
+/* Video background */
+.video-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -2;
+  overflow: hidden;
+}
+
+#bg-video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  transform: translate(-50%, -50%);
+  object-fit: cover;
+}
+
+/* Semi-transparent overlay for readability */
+.video-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(15, 23, 42, 0.45);
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* Ensure #app content sits above the video/overlay */
+#app {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+  background: rgba(248, 250, 252, 0.15);
+}
+
+/* Improve text legibility over video */
+.container h1,
+.container h2,
+.container p,
+.container label,
+.container td,
+.container th {
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+  color: #ffffff;
+}
+
+/* Adjust section backgrounds for transparency if desired */
+section {
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(6px);
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -258,4 +318,30 @@ td {
     white-space: pre-wrap;
     word-break: break-word;
   }
+  
+}
+
+.river-selector label {
+  font-weight: var(--font-weight-semibold);
+}
+
+.river-select {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+}
+
+.btn-primary {
+  background: var(--primary);
+  color: white;
+  padding: 0.8rem 1.5rem;
+  border: none;
+  border-radius: var(--radius);
+  font-weight: var(--font-weight-semibold);
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  background: var(--primary-hover);
 }
